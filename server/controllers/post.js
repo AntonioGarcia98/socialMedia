@@ -10,7 +10,7 @@ function newPost(req, res) {
         //Seguir con el video jeje
         post.titulo = params.titulo;
         post.texto = params.texto;
-        post.descripcion = params.usuario;
+        post.descripcion = params.descripcion;
         post.usuario = params.usuario;
 
         post.save((err, postStored) => {
