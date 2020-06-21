@@ -15,7 +15,7 @@ mongoose.connect('mongodb+srv://PrototipoTesina:prototipot3s1n4@prototipotesina-
 
     //Crear servidor
     app.listen(port,() =>{
-        console.log("Servidor corriendo en http://localhost:39000");
+        console.log("Servidor corriendo en http://localhost:3900");
     });
 
 })
