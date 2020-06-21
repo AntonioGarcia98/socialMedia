@@ -112,7 +112,7 @@ front/dist
 /bazel-out
 
 # dependencies
-front/node_modules
+front/uuaulavirtual/node_modules
 server/node_modules
 
 # profiling files
