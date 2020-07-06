@@ -1,0 +1,199 @@
+<!--<app-navbar></app-navbar>-->
+
+<!--Main layout-->
+<main class="mt-2 pt-5">
+  <div class="container">
+
+    <!--Section: Post-->
+    <section class="mt-4">
+
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-12 mb-4">
+
+          <!--Featured Image-->
+          <div class="card mb-4 wow fadeIn">
+
+            <img src="../../../assets/study.jpg" alt="">
+
+          </div>
+          <!--/.Featured Image-->
+
+          <!--Card-->
+          
+          <div class="card mb-4 wow fadeIn">
+
+            <!--Card content-->
+            <div class="card-body text-center">
+
+              <p class="h5 my-4">Que es SocialMedia?</p>
+
+              <p>SocialMedia es un sistema de comunicacion esntre las personas que quieren brindar su servicio de tutotria y todos los que tienen dudas</p>
+
+              <h5 class="my-4">
+                <strong>SocialMedia</strong>
+              </h5>
+              <div class="pb-4">
+                <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+                  <i class="fab fa-facebook-f mr-3"></i>
+                </a>
+
+                <a href="https://twitter.com/MDBootstrap" target="_blank">
+                  <i class="fab fa-twitter mr-3"></i>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+                  <i class="fab fa-youtube mr-3"></i>
+                </a>
+
+
+                <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
+                  <i class="fab fa-github mr-3"></i>
+                </a>
+                <br>
+                <div class="extra-buttons">
+                <button mat-raised-button color="primary" (click)="activities.openAll()" >Ver todo el contenido del post</button>
+               <button mat-raised-button color="primary" (click)="activities.closeAll()">Ocultar el contenido del post</button>
+                </div>
+
+              </div>
+
+
+              <hr>
+
+
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+
+          <div style="display: flex; margin:  31px;" >
+            <button mat-raised-button color="primary" (click)="fnNewPost()">
+              <mat-icon>add</mat-icon>Agregar publicacion
+            </button>
+          </div>
+      
+
+            <mat-accordion multi #activities="matAccordion">
+              <!-- Activity -->
+              <mat-expansion-panel class="panel" *ngFor="let post of text" style="background: #424242;">
+                <mat-expansion-panel-header class="activity-panel" style="background: #424242;">
+                
+                  <mat-panel-title>
+                    <h2>
+                      {{post.titulo}}
+                    </h2>
+                   
+                  </mat-panel-title>
+                  <mat-panel-description style="justify-content: flex-end;" style="background: #424242;">
+                   {{post.usuario}}
+                    
+                  </mat-panel-description>
+                 
+                </mat-expansion-panel-header>
+          
+                <div class="activity-container"  style="background: #424242;">
+                 
+                  <div class="description">
+                    {{post.descripcion}}
+                  </div>
+                  <div class="description">
+                    {{post.texto}}
+                  </div>
+                  <div class="description">
+                    <button mat-raised-button color="accent"></button>
+                  </div>
+                  <div class="buttons">
+                    <button mat-mini-fab color="primary" (click)="deletePost(post)">
+                      <mat-icon style="display: flex;flex-direction: row-reverse;" >delete</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="primary" (click)="editPost(post)">
+                      <mat-icon style="display: flex;flex-direction: row-reverse;" >edit</mat-icon>
+                    </button>
+                    
+                   
+        
+                  </div>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+            <!--/.Card-->
+
+
+            <!--Commentarios
+            <div class="card card-comments mb-3 wow fadeIn">
+              <div class="card-header font-weight-bold"></div>
+              <div class="card-body">
+
+                <div class="media d-block d-md-flex mt-4" *ngFor="let post of group.comments">
+                  <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                    <h5 class="mt-0 font-weight-bold">{{post.person}}
+                      <a href="" class="pull-right">
+                        <i class="fas fa-reply"></i>
+                      </a>
+                    </h5>
+                    {{post.comment}}
+                  </div>
+                </div>
+
+                <div class="form-group mt-4">
+                  <label for="quickReplyFormComment">Comentario</label>
+                  <textarea class="form-control" id="quickReplyFormComment" rows="5" #titleInput></textarea>
+
+                  <div class="text-center">
+                    <button class="btn btn-info btn-sm" (click)="addComment(titleInput.value)">Post</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>-->
+  
+
+
+
+
+        </div>
+
+
+      </div>
+
+
+    </section>
+  </div>
+</main>
+
+
+<!--Footer-->
+<footer class="page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn">
+
+
+  <hr class="my-4">
+
+  <!--  iconos -->
+  <div class="pb-4">
+    <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+      <i class="fab fa-facebook-f mr-3"></i>
+    </a>
+
+    <a href="https://twitter.com/MDBootstrap" target="_blank">
+      <i class="fab fa-twitter mr-3"></i>
+    </a>
+
+    <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+      <i class="fab fa-youtube mr-3"></i>
+    </a>
+    +
+
+    <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
+      <i class="fab fa-github mr-3"></i>
+    </a>
+
+
+  </div>
+
+
+
+</footer>
