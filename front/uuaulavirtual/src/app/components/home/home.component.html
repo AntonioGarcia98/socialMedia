@@ -79,8 +79,8 @@
 
             <mat-accordion multi #activities="matAccordion">
               <!-- Activity -->
-              <mat-expansion-panel class="panel" *ngFor="let post of text" style="background: #424242;">
-                <mat-expansion-panel-header class="activity-panel" style="background: #424242;">
+              <mat-expansion-panel class="panel" *ngFor="let post of text">
+                <mat-expansion-panel-header class="activity-panel">
                 
                   <mat-panel-title>
                     <h2>
@@ -88,14 +88,14 @@
                     </h2>
                    
                   </mat-panel-title>
-                  <mat-panel-description style="justify-content: flex-end;" style="background: #424242;">
+                  <mat-panel-description style="justify-content: flex-end;">
                    {{post.usuario}}
                     
                   </mat-panel-description>
                  
                 </mat-expansion-panel-header>
           
-                <div class="activity-container"  style="background: #424242;">
+                <div class="activity-container" >
                  
                   <div class="description">
                     {{post.descripcion}}
