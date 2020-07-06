@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.dialog-fuchi mat-dialog-container{
+    overflow: unset;
+    position: relative;
+}   
+
+.mat-expansion-panel-body{
+    background-color: white !important;
+}
+
+.cdk-overlay-pane{
+    overflow: unset !important;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

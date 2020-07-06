@@ -1,0 +1,35 @@
+:host{
+    display: flex;
+    height: 100%;
+    flex-flow: column;
+    max-width: 700px;
+
+    .all-container{
+        overflow: unset;
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        .info-container{
+            padding: 15px;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .close-button{
+        position: absolute;
+        top: -20px;
+        right: -20px;
+    }
+
+    .buttons-container{
+        /* overflow-y: auto;
+        overflow-x: hidden; */
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -112,8 +112,8 @@ front/dist
 /bazel-out
 
 # dependencies
-front/uuaulavirtual/node_modules
-server/node_modules
+node_modules/
+server/node_modules 
 
 # profiling files
 chrome-profiler-events*.json
