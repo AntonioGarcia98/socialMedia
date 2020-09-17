@@ -26,7 +26,12 @@ import { SchoolService } from './services/school.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderService } from './services/loader.service';
-
+import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { LoginComponent } from './components/login/login.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {  MatFormFieldModule} from '@angular/material/form-field';
+import {  MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,10 @@ import { LoaderService } from './services/loader.service';
     NavbarComponent,
     FormDialogComponent,
     MessageDialogComponent,
-    LoaderComponent
+    LoaderComponent,
+    CreateAccountComponent,
+    LoginComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +57,10 @@ import { LoaderService } from './services/loader.service';
     MatDividerModule,
     MatDialogModule,
     SithecSuiteModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [
     UserService,

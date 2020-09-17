@@ -28,6 +28,8 @@
           <ng-container *ngIf="!( session | async )">
             <button mat-button (click)="login()">Iniciar Sesión</button>
             <button mat-button (click)="createAccount()"> Crear cuenta </button>
+            <button mat-button (click)="login2()">Iniciar Sesión sin componente</button>
+            <button mat-button (click)="createAccount2()"> Crear cuenta  sin componente</button>
           </ng-container>
           <ng-container *ngIf="( session | async )">
             <button mat-button (click)="logout()"> Cerrar sesión </button>

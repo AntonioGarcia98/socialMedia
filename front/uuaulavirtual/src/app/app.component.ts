@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { S2BootstrapColumnsModel } from './form-component/models/s2-bootstrap-columns.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { S2InputForm } from './form-component/models/s2-input-form.model';
@@ -26,6 +26,7 @@ import { UserService } from './services/user.service';
 import { async } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { LoaderService } from './services/loader.service';
+import { LoginComponent } from './components/login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -869,5 +870,35 @@ export class AppComponent implements OnInit {
           }
         }
       })
+  }
+
+
+  login2():void{
+   
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.autoFocus = true;
+      dialogConfig.data = { class:"hola" };
+  
+      this.openClassDialog(dialogConfig);
+    
+  }
+
+  createAccount2():void{
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = { class:"hola" };
+
+    this.openClassDialog(dialogConfig);
+  }
+
+
+  private openClassDialog(dialogConfig: MatDialogConfig): void {
+    this.dialog.open(LoginComponent, dialogConfig)
+      .afterClosed()
+      .subscribe(response => {
+        if (response && response.section) {
+         
+        }
+      });
   }
 }
