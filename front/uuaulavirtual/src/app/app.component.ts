@@ -27,6 +27,7 @@ import { async } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { LoaderService } from './services/loader.service';
 import { LoginComponent } from './components/login/login.component';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
 
 @Component({
   selector: 'app-root',
@@ -875,30 +876,21 @@ export class AppComponent implements OnInit {
 
   login2():void{
    
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.autoFocus = true;
-      dialogConfig.data = { class:"hola" };
-  
-      this.openClassDialog(dialogConfig);
+    this.openDialog(LoginComponent, null).then((res) => {
+
+    })
     
   }
 
   createAccount2():void{
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.data = { class:"hola" };
 
-    this.openClassDialog(dialogConfig);
+    this.openDialog(CreateAccountComponent, null).then((res) => {
+
+    })
   }
 
-
-  private openClassDialog(dialogConfig: MatDialogConfig): void {
-    this.dialog.open(LoginComponent, dialogConfig)
-      .afterClosed()
-      .subscribe(response => {
-        if (response && response.section) {
-         
-        }
-      });
+  openDialog(component : any, data : any)
+  {
+    return this.dialog.open(component, {data: data, panelClass: "dialog-fuchi", width: '400px'}).afterClosed().toPromise();
   }
 }

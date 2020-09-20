@@ -27,11 +27,12 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderService } from './services/loader.service';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
-import { LoginComponent } from './components/login/login.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {  MatFormFieldModule} from '@angular/material/form-field';
 import {  MatInputModule} from '@angular/material/input';
+import { LoginModule } from './components/login/login.module';
+import { CreateAccountModule } from './components/create-account/create-account.module';
 
 @NgModule({
   declarations: [
@@ -40,8 +41,6 @@ import {  MatInputModule} from '@angular/material/input';
     FormDialogComponent,
     MessageDialogComponent,
     LoaderComponent,
-    CreateAccountComponent,
-    LoginComponent,
     ProfilePageComponent
   ],
   imports: [
@@ -61,6 +60,8 @@ import {  MatInputModule} from '@angular/material/input';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    LoginModule,
+    CreateAccountModule
   ],
   providers: [
     UserService,

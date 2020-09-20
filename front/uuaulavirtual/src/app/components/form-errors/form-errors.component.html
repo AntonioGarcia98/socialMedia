@@ -1,0 +1,13 @@
+<mat-error *ngIf="control && control.invalid && (control.dirty || control.touched)">
+    <ng-container [ngSwitch]="getErrors()">
+        <span *ngSwitchCase="'required'">*Campo obligatorio.</span>
+        <span *ngSwitchCase="'minlength'">*El texto es muy corto.</span>
+        <span *ngSwitchCase="'maxlength'">*El texto es demasiado largo.</span>
+        <span *ngSwitchCase="'email'">*El email no es valido.</span>
+        <span *ngSwitchCase="'min'">*Cantidad invalida</span>
+        <span *ngSwitchCase="'max'">*Cantidad invalida</span>
+        <span *ngSwitchCase="'mustMatch'">*Las contraseñas no coinciden</span>
+        <span *ngSwitchCase="'whitespace'">*Contiene espacios en los extremos</span>
+        <span *ngSwitchCase="'maxDate'">*La fecha debe ser anterior o igual a la actual</span>
+    </ng-container>
+</mat-error>
