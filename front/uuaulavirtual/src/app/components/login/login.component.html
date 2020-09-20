@@ -10,7 +10,7 @@
   </div>
 
   <div class="form-container">
-    <form [formGroup]="loginForm" (submit)="submit()">
+    <form [formGroup]="loginForm" (submit)="loginForm.invalid || submit();">
       <div>
         <mat-form-field class="form-field" appearance="outline" style="width: 100%;">
           <mat-label> E-mail
@@ -32,6 +32,6 @@
 
 
 
-      <button mat-raised-button color="primary" type="submit">Log In</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" >Log In</button>
     </form>
   </div>

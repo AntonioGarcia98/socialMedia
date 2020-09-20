@@ -10,7 +10,7 @@
   </div>
 
   <div class="form-container">
-    <form [formGroup]="createForm" (submit)="submit()">
+    <form [formGroup]="createForm" (submit)="createForm.invalid || submit();">
       <div>
         <mat-form-field class="form-field" appearance="outline" style="width: 100%;">
           <mat-label>Correo Electrónico
@@ -38,7 +38,7 @@
         <app-form-errors [control]="createForm.controls.confirmPassword"></app-form-errors>
       </div>
 
-      <button mat-raised-button color="primary" type="submit">Log In</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="createForm.invalid">Log In</button>
     </form>
   </div>
 </div>

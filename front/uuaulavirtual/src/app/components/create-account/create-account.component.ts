@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MustMatch } from 'src/app/validators/match.validator';
 
 @Component({
   selector: 'app-create-account',
@@ -29,7 +30,7 @@ export class CreateAccountComponent implements OnInit {
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required]),
       confirmPassword: new FormControl(null, [Validators.required]),
-    })
+    }, MustMatch("password", "confirmPassword"))
   }
 
   submit() {
