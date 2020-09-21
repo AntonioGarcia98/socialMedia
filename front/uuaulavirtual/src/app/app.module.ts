@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,17 +22,17 @@ import { MessageDialogComponent } from './components/message-dialog/message-dial
 import { TeacherService } from './services/teacher.service';
 import { StudentService } from './services/student.service';
 import { SchoolService } from './services/school.service';
-
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderService } from './services/loader.service';
-import { CreateAccountComponent } from './components/create-account/create-account.component';
-import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {  MatFormFieldModule} from '@angular/material/form-field';
 import {  MatInputModule} from '@angular/material/input';
 import { LoginModule } from './components/login/login.module';
-import { CreateAccountModule } from './components/create-account/create-account.module';
+import { CommonModule } from '@angular/common';
+
+
+
 
 @NgModule({
   declarations: [
@@ -40,8 +40,10 @@ import { CreateAccountModule } from './components/create-account/create-account.
     NavbarComponent,
     FormDialogComponent,
     MessageDialogComponent,
-    LoaderComponent,
-    ProfilePageComponent
+    LoaderComponent
+   
+
+   
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,7 @@ import { CreateAccountModule } from './components/create-account/create-account.
     MatFormFieldModule,
     MatInputModule,
     LoginModule,
-    CreateAccountModule
+    CommonModule
   ],
   providers: [
     UserService,
@@ -80,6 +82,10 @@ import { CreateAccountModule } from './components/create-account/create-account.
       provide: MatDialogRef,
       useValue: null
     },
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
   ],
   bootstrap: [AppComponent]
 })

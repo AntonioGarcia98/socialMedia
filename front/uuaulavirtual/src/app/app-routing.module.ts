@@ -10,6 +10,13 @@ const routes: Routes = [
     /* canActivate: [AuthGuard], */
     /* data: {} */
   },
+  {
+    path: 'profile-page',
+    loadChildren: () => import('./components/profile-page/profile-page.module').then(m => m.ProfilePageModule),
+  },
+    /* canActivate: [AuthGuard], */
+    /* data: {sessionRequired  : true} 
+  },
   /*{
     path: 'group',
     loadChildren: () => import('./components/group/group.module').then(m => m.GroupModule),
