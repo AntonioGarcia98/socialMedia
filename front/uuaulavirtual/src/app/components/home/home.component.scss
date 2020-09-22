@@ -20,12 +20,13 @@
   /* Create two equal columns that floats next to each other */
   .column {
     float: left;
-    padding: 50px;
+    padding: 20px;
     height: auto; /* Should be removed. Only for demonstration */
   }
 
   .left {
     width: 75%;
+    padding-left: 3rem;
   }
   
   .right {

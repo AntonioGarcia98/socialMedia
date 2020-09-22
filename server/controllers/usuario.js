@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 
 var ObjectId = require('mongodb').ObjectID;
 
-var Usuario = require('../model/usuario');
+var Usuario = require('../models/usuario');
 
 var mongoosePaginate = require('mongoose-pagination');
 
@@ -21,6 +21,7 @@ var md_auth = require('../middleware/authenticated');
 function newUsuario(req, res) {
     var params = req.body; //Toma todos los campos que llegan por req en body, y los pone en params
     var user = new Usuario();
+    
     if (params.nombre && params.apellidos && params.correo && params.pass && params.tipoUsuario && params.descripcion) {
         //Seguir con el video jeje
 
@@ -30,6 +31,7 @@ function newUsuario(req, res) {
         user.correo = params.correo.toLowerCase();
         user.tipoUsuario = params.tipoUsuario;
         user.image = params.image;
+        user.descripcion =params.descripcion;
 
         //Controlar los usuarios repetidos por correo
         Usuario.findOne({ correo: user.correo.toLowerCase() }).exec((err, users) => {

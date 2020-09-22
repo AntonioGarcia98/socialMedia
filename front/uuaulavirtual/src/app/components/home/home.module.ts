@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
+import { AsideModule } from '../aside/aside.module';
 
 
 
@@ -23,8 +24,8 @@ const routes: Routes = [
         MatIconModule,
         MatDialogModule,
         MatExpansionModule,
-      
         MatListModule,
+        AsideModule
      
     
     ],

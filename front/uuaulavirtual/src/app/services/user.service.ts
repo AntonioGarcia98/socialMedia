@@ -4,18 +4,25 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ServiceBase } from './base.service';
 import { User } from '../models/user.model';
+import { UserModel } from '../components/create-account/user.model';
 
 @Injectable()
 export class UserService extends ServiceBase<User> {
     
-    url : string = environment.server + 'user';
+    url : string = environment.server +'api';
 
     constructor(
         protected http : HttpClient
     ) { 
         super(User);
     }
+    postNewUser(newUser:UserModel)
+    {
+        return this.http.post(this.url + "/newUsuario",newUser)
+    }
 
+
+    
     getStudents()
     {
         return this.http.get(this.url + "/filter/student")
