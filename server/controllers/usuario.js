@@ -6,9 +6,9 @@ var mongoose = require('mongoose');
 
 var ObjectId = require('mongodb').ObjectID;
 
-var Usuario = require('../model/usuario');
+var User = require('../models/usuario');
 
-var mongoosePaginate = require('mongoose-pagination');
+//var mongoosePaginate = require('mongoose-pagination');
 
 var bcrypt = require('bcrypt-nodejs');
 
@@ -20,7 +20,7 @@ var md_auth = require('../middleware/authenticated');
 //Crear nuevo usuario
 function newUsuario(req, res) {
     var params = req.body; //Toma todos los campos que llegan por req en body, y los pone en params
-    var user = new Usuario();
+    var user = new User();
     if (params.nombre && params.apellidos && params.correo && params.pass && params.tipoUsuario && params.descripcion) {
         //Seguir con el video jeje
 
@@ -32,7 +32,7 @@ function newUsuario(req, res) {
         user.image = params.image;
 
         //Controlar los usuarios repetidos por correo
-        Usuario.findOne({ correo: user.correo.toLowerCase() }).exec((err, users) => {
+        User.findOne({ correo: user.correo.toLowerCase() }).exec((err, users) => {
             if (err) return res.status(500).send({ message: "Error en la busqueda", success: false })
             if (users) {
                 return res.status(200).send({
