@@ -36,7 +36,7 @@ export class CreateAccountComponent implements OnInit {
       nombre: new FormControl(null, [Validators.required]),
       apellidos: new FormControl(null, [Validators.required]),
       descripcion: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      correo: new FormControl(null, [Validators.required, Validators.email]),
       pass: new FormControl(null, [Validators.required]),
       confirmPassword: new FormControl(null, [Validators.required]),
     }, MustMatch("pass", "confirmPassword"))
@@ -48,6 +48,7 @@ export class CreateAccountComponent implements OnInit {
     }
     let userSend = this.createForm.value
     userSend.tipoUsuario =1
+    
     console.log(userSend);
     this.userService.postNewUser(userSend).toPromise()
     .then((res)=>{
