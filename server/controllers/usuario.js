@@ -21,7 +21,7 @@ var md_auth = require('../middleware/authenticated');
 function newUsuario(req, res) {
     var params = req.body; //Toma todos los campos que llegan por req en body, y los pone en params
     var user = new Usuario();
-    if (params.nombre && params.apellidos && params.correo && params.pass && params.tipoUsuario) {
+    if (params.nombre && params.apellidos && params.correo && params.pass && params.tipoUsuario && params.descripcion) {
         //Seguir con el video jeje
 
         user.nombre = params.nombre;
@@ -32,7 +32,7 @@ function newUsuario(req, res) {
         user.image = params.image;
 
         //Controlar los usuarios repetidos por correo
-        User.findOne({ correo: user.correo.toLowerCase() }).exec((err, users) => {
+        Usuario.findOne({ correo: user.correo.toLowerCase() }).exec((err, users) => {
             if (err) return res.status(500).send({ message: "Error en la busqueda", success: false })
             if (users) {
                 return res.status(200).send({

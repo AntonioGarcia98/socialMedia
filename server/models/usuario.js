@@ -9,7 +9,8 @@ var UsuarioSchema = Schema({
     correo: String,
     pass: String,
     tipoUsuario: Number,
-    image: String
+    image: String,
+    descripcion: String
 });
 
 module.exports = mongoose.model('UsuarioSchema', UsuarioSchema, 'usuario');
