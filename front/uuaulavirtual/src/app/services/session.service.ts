@@ -4,7 +4,6 @@ import * as jwt_decode from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { decode } from 'punycode';
 import { LoginRequest } from '../models/login-request.model';
 
 @Injectable()
@@ -35,14 +34,19 @@ export class SessionService {
     }
 
     login(loginRequest: LoginRequest) {
-        return this.http.post(this.url + 'login', loginRequest)
+        return this.http.post(this.url + 'api/login', loginRequest)
             .toPromise()
             .then((res: any) => {
                 console.log(res)
-                
-                var session = this.tokenToSession(res.item.token);
-                this.session.next(session);
-                localStorage.setItem(SessionService.SESSION_TAG, session.token);
+                if(res.success==true){
+                    var session = this.tokenToSession(res.item.token);
+                    this.session.next(session);
+                    localStorage.setItem(SessionService.SESSION_TAG, session.token);
+                    
+                }
+                return res
+            
+              
             })
             .catch(err => {
                 throw err;
