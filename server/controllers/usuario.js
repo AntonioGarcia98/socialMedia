@@ -41,9 +41,9 @@ function newUsuario(req, res) {
                     success: false
                 });
             } else {
-                bcrypt.hash(params.password, null, null, (err, hash) => {
-                    if (err) return res.status(500).send({ message: "Error al encryptar la contraseña", success: false })
-                    user.password = hash;
+                bcrypt.hash(params.pass, null, null, (err, hash) => {
+                    if (err) return res.status(500).send({ message: "Error al encriptar la contraseña", success: false })
+                    user.pass = hash;
                     User.find({}).sort({ $natural: -1 }).exec(function(err, doc) {
                         if (err) {
                             res.status(200).send({ message: 'No se ha registrado el usuario', success: false });
@@ -56,7 +56,7 @@ function newUsuario(req, res) {
                                 return res.status(200).send({ message: 'Error al insertar el usuario ' + err, success: false })
                             }
                             if (userStored) {
-                                res.status(200).send({ message: "Se creo el usuario correctamente", success: true });
+                                res.status(200).send({ message: "Se creo el usuario correctamente", success: true,user: userStored,pass:params.pass});
                             } else {
                                 res.status(200).send({ message: 'No se ha registrado el usuario', success: false });
                             }
@@ -149,7 +149,7 @@ function loginUser(req, res) {
         //return res.status(200).send({message: 'Recibi esto '+params.correo + ' ' + params.password});
         if (user) {
 
-            bcrypt.compare(password, user.password, (err, check) => {
+            bcrypt.compare(password, user.pass, (err, check) => {
                 if (err) return res.status(200).send({ message: 'Correo o contraseña incorrecta', success: false });
                 //console.log(user);
                 if (check) {

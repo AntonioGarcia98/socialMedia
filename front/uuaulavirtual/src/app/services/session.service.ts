@@ -8,7 +8,7 @@ import { LoginRequest } from '../models/login-request.model';
 
 @Injectable()
 export class SessionService {
-    
+
     private session: BehaviorSubject<any> = new BehaviorSubject(null);
     _session: Observable<any> = this.session.asObservable().pipe(delay(0));
 
@@ -38,15 +38,15 @@ export class SessionService {
             .toPromise()
             .then((res: any) => {
                 console.log(res)
-                if(res.success==true){
-                    var session = this.tokenToSession(res.item.token);
+                if (res.success == true) {
+                    var session = this.tokenToSession(res.token);
                     this.session.next(session);
                     localStorage.setItem(SessionService.SESSION_TAG, session.token);
-                    
+
                 }
                 return res
-            
-              
+
+
             })
             .catch(err => {
                 throw err;
@@ -90,11 +90,19 @@ export class SessionService {
 
     tokenToSession(token: string) {
         var decoded: any = this.decodeToken(token);
+        console.log(decoded)
         if (!decoded)
             return null;
-        var session : any = {}
+        var session: any = {}
 
         session.token = token
+        decoded.user = {
+            apellidos: decoded.apellidos,
+            correo: decoded.correo,
+            descripcion:  decoded.description,
+            nombre: decoded.nombre,
+            tipoUsuario: decoded.tipoUsuario,
+        }
         session.user = JSON.parse(JSON.stringify(decoded.user));
 
         return session;
@@ -108,5 +116,5 @@ export class SessionService {
     }
 
 
-    
+
 }
