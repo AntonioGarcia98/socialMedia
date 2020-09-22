@@ -30,7 +30,7 @@ function newUsuario(req, res) {
         user.correo = params.correo.toLowerCase();
         user.tipoUsuario = params.tipoUsuario;
         user.image = params.image;
-        user.descripcion =params.descripcion;
+        user.descripcion = params.descripcion;
 
         //Controlar los usuarios repetidos por correo
         User.findOne({ correo: user.correo.toLowerCase() }).exec((err, users) => {
