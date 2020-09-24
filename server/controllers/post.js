@@ -44,6 +44,20 @@ function getPost(req, res) {
     });
 }
 
+function getPostByUser(req, res) {
+    var userID = req.user.sub;
+
+    Post.find({ _id: userID }, (err, posts) => {
+        if (err) return res.status(200).send({ message: 'Error en la peticion' });
+
+        if (!posts) return res.status(200).send({ message: 'No hay posts disponibles', success: false });
+
+        return res.status(200).send({
+            posts
+        });
+    }).sort('_id');
+}
+
 
 //Consultar usuarios por paginas
 function getPosts(req, res) {
@@ -94,5 +108,6 @@ module.exports = {
     getPost,
     getPosts,
     updatePost,
-    deletePost
+    deletePost,
+    getPostByUser
 }
