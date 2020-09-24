@@ -47,7 +47,7 @@ function getPost(req, res) {
 function getPostByUser(req, res) {
     var userID = req.user.sub;
 
-    Post.find({ _id: userID }, (err, posts) => {
+    Post.find({ usuario: userID }, (err, posts) => {
         if (err) return res.status(200).send({ message: 'Error en la peticion' });
 
         if (!posts) return res.status(200).send({ message: 'No hay posts disponibles', success: false });
