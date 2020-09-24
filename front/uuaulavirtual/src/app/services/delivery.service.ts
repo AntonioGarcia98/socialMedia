@@ -32,6 +32,12 @@ export class DeliveryService {
     return this.http.get(this.url + '/getPost/idPost/' + id);
   }
 
+
+  getPostByUser() {
+    console.log("llddsa")
+    return this.http.get(this.url + '/getPostsByUser');
+  }
+
   update(id: any, item: any) {
     return this.http.post(this.url + '/updatePost/idPost/' + id, item);
   }
