@@ -1,9 +1,12 @@
+import { state } from '@angular/animations';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
-import { LoaderService } from 'src/app/services/loader.service';
+import { config } from 'process';
+
 import { UserService } from 'src/app/services/user.service';
 import { MustMatch } from 'src/app/validators/match.validator';
+import { FormDialogComponent } from '../form-dialog/form-dialog.component';
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 import { MessageConfig } from '../message-dialog/message-dialog.model';
 
@@ -17,13 +20,15 @@ export class CreateAccountComponent implements OnInit {
   createForm: FormGroup;
 
   constructor(
+    private dialog: MatDialog,
     public dialogRef: MatDialogRef<CreateAccountComponent>,
-    private userService:UserService,
+    private userService: UserService,
     @Inject(MAT_DIALOG_DATA) public data?: any,
-    //private loader: LoaderService,
+   
 
   ) {
     //Disable close on click outside of the dialog
+    
     this.dialogRef.disableClose = true;
   }
 
@@ -47,27 +52,23 @@ export class CreateAccountComponent implements OnInit {
       return;
     }
     let userSend = this.createForm.value
-    userSend.tipoUsuario =1
-    
-    console.log(userSend);
+    userSend.tipoUsuario = 1
     this.userService.postNewUser(userSend).toPromise()
-    .then((res)=>{
-      console.log("creado",res)
-      var message: MessageConfig = {
-        title: "Post creado",
-        message: "Post creado incorrectamente."
-      }
-     // this.dialog.open(MessageDialogComponent, { data: message, panelClass: "dialog-fuchi" });
-    })
-    .catch((rej) =>{
-      var message: MessageConfig = {
-        title: "Post creado",
-        message: "Post creado incorrectamente."
-      }
-     // this.dialog.open(MessageDialogComponent, { data: message, panelClass: "dialog-fuchi" });
-    })
+      .then((res: any) => {
+        this.dialogRef.close(1)
+        this.fnOpenMessage(res.message)
+      })
+      .catch((rej: any) => {
+        this.fnOpenMessage(rej.message)
+      })
+  }
 
-
+  fnOpenMessage(text: string) {
+    var message: MessageConfig = {
+      title: " Creacion usuario",
+      message: text
+    }
+    this.dialog.open(MessageDialogComponent, { data: message, panelClass: "dialog-fuchi" });
   }
 
 

@@ -164,7 +164,7 @@ export class HomeComponent implements OnInit {
     config.tool = 'form-generator';
 
     config.fnOnSubmit = (event, ref: MatDialogRef<any>) => {
-      console.log(event.data['post-new'])
+
      var postNew: PostModel = new PostModel()
 
       Object.keys(event.data['post-new']).map(k => {

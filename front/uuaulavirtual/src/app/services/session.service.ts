@@ -4,12 +4,11 @@ import * as jwt_decode from 'jwt-decode';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { decode } from 'punycode';
 import { LoginRequest } from '../models/login-request.model';
 
 @Injectable()
 export class SessionService {
-    
+
     private session: BehaviorSubject<any> = new BehaviorSubject(null);
     _session: Observable<any> = this.session.asObservable().pipe(delay(0));
 
@@ -35,14 +34,19 @@ export class SessionService {
     }
 
     login(loginRequest: LoginRequest) {
-        return this.http.post(this.url + 'login', loginRequest)
+        return this.http.post(this.url + 'api/login', loginRequest)
             .toPromise()
             .then((res: any) => {
                 console.log(res)
-                
-                var session = this.tokenToSession(res.item.token);
-                this.session.next(session);
-                localStorage.setItem(SessionService.SESSION_TAG, session.token);
+                if (res.success == true) {
+                    var session = this.tokenToSession(res.token);
+                    this.session.next(session);
+                    localStorage.setItem(SessionService.SESSION_TAG, session.token);
+
+                }
+                return res
+
+
             })
             .catch(err => {
                 throw err;
@@ -86,11 +90,20 @@ export class SessionService {
 
     tokenToSession(token: string) {
         var decoded: any = this.decodeToken(token);
+        console.log(decoded)
         if (!decoded)
             return null;
-        var session : any = {}
+        var session: any = {}
 
         session.token = token
+        decoded.user = {
+            apellidos: decoded.apellidos,
+            correo: decoded.correo,
+            descripcion:  decoded.description,
+            nombre: decoded.nombre,
+            tipoUsuario: decoded.tipoUsuario,
+            id: decoded.sub
+        }
         session.user = JSON.parse(JSON.stringify(decoded.user));
 
         return session;
@@ -104,5 +117,5 @@ export class SessionService {
     }
 
 
-    
+
 }
