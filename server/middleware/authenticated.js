@@ -2,7 +2,7 @@
 
 var jwt = require('jwt-simple');
 var moment = require('moment');
-var secret = 'proyecto_tesina';
+var secret = 'moisy_el_precioso';
 
 exports.ensureAuth = function(req, res, next) {
     if (!req.headers.authorization) //Headers Angular
