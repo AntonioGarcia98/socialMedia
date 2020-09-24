@@ -62,6 +62,18 @@ function getPostByUser(req, res) {
 //Consultar usuarios por paginas
 function getPosts(req, res) {
 
+    if (req.params.id) {
+        Post.find({ usuario: req.params.id }, (err, posts) => {
+            if (err) return res.status(200).send({ message: 'Error en la peticion', success: false });
+
+            if (!posts) return res.status(200).send({ message: 'No hay posts disponibles', success: false });
+
+            return res.status(200).send({
+                posts
+            });
+        }).sort('_id').populate({ path: 'objUsuario' });
+    }
+
     Post.find((err, posts) => {
         if (err) return res.status(200).send({ message: 'Error en la peticion', success: false });
 
@@ -70,7 +82,7 @@ function getPosts(req, res) {
         return res.status(200).send({
             posts
         });
-    }).sort('_id');
+    }).sort('_id').populate({ path: 'objUsuario' });
 
 }
 

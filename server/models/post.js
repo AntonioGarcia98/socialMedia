@@ -7,7 +7,8 @@ var PostSchema = Schema({
     titulo: String,
     texto: String,
     descripcion: String,
-    usuario: String
+    usuario: String,
+    objUsuario: { type: Schema.ObjectId, ref: 'usuario' }
 });
 
-module.exports = mongoose.model('PostSchema',PostSchema,'post');
+module.exports = mongoose.model('PostSchema', PostSchema, 'post');
