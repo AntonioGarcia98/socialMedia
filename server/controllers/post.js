@@ -62,27 +62,28 @@ function getPostByUser(req, res) {
 //Consultar usuarios por paginas
 function getPosts(req, res) {
 
-    if (req.params.id) {
-        Post.find({ usuario: req.params.id }, (err, posts) => {
-            if (err) return res.status(200).send({ message: 'Error en la peticion', success: false });
+    var postId = req.params.id;
+    if (postId) {
+        Post.find({ usuario: postId }, (err, posts) => {
+            if (err) return res.status(200).send({ message: 'Error en la peticion cp', success: false });
 
             if (!posts) return res.status(200).send({ message: 'No hay posts disponibles', success: false });
 
             return res.status(200).send({
                 posts
             });
-        }).sort('_id').populate({ path: 'objUsuario' });
+        }).sort('_id').populate({ path: 'Usuario' });
     }
 
     Post.find((err, posts) => {
-        if (err) return res.status(200).send({ message: 'Error en la peticion', success: false });
+        if (err) return res.status(200).send({ message: 'Error en la peticion sp', success: false });
 
         if (!posts) return res.status(200).send({ message: 'No hay posts disponibles', success: false });
 
         return res.status(200).send({
             posts
         });
-    }).sort('_id').populate({ path: 'objUsuario' });
+    }).sort('_id').populate({ path: 'Usuario' });
 
 }
 
