@@ -74,12 +74,13 @@ export class AppComponent implements OnInit {
    /* this.getCatalogs()
 
     this.getUserInfo()*/
+    this.getUserInfo()
   }
   
   getUserInfo()
   {
-    var id = this.sessionService.getSession()?.user._id
-
+    this.user = this.sessionService.getSession()?.user
+    /*console.log("la sesion",id)
     this.userService.get(id)
     .toPromise()
     .then((res : any) => {
@@ -90,7 +91,7 @@ export class AppComponent implements OnInit {
       this.cdr.detectChanges()
       this.cdr.markForCheck()
       this.loader.hide()
-    })
+    })*/
   }
 
   getCatalogs() {

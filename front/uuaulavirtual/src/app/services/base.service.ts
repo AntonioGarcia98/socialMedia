@@ -12,7 +12,7 @@ export class ServiceBase<TClass> {
     ) {}
 
     get(id: any) {
-        return this.http.get(this.url + '/' + id, {
+        return this.http.get(this.url + '/getUsuario/idUsuario/' + id, {
         });
     }
 

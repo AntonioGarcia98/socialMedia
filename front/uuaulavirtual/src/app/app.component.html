@@ -22,19 +22,19 @@
         <button mat-icon-button *ngIf="( session | async )">
           <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
         </button>
-        <h1 [routerLink]="'/home'" style="cursor: pointer;">SocialMedia <span *ngIf="( session | async )">- ¡Bienvenido {{user?.user_name}}!</span></h1>
+        <h1 [routerLink]="'/home'" style="cursor: pointer;">SocialMedia <span *ngIf="( session | async )">- ¡Bienvenido {{user?.nombre}}!</span></h1>
         <!-- <span class="menu-spacer"></span> -->
         <div class="nav-buttons">
           <ng-container *ngIf="!( session | async )">
           <!--  <button mat-button (click)="login()">Iniciar Sesión</button>
             <button mat-button (click)="createAccount()"> Crear cuenta </button>-->
-            <button mat-button (click)="login2()">Iniciar Sesión sin componente</button>
-            <button mat-button (click)="createAccount2()"> Crear cuenta  sin componente</button>
+            <button mat-button (click)="login2()">Iniciar Sesión</button>
+            <button mat-button (click)="createAccount2()"> Crear cuenta </button>
           </ng-container>
           <ng-container *ngIf="( session | async )">
             <button mat-button (click)="logout()"> Cerrar sesión </button>
             <button mat-button (click)="edit()"> Editar perfil </button>
-            <button mat-button [routerLink]="['/group']"> Grupos </button>
+            <button mat-button [routerLink]="['/profile-page']"> Ir a tu perfil  </button>
           </ng-container>
           
         </div>
