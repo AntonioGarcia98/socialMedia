@@ -83,12 +83,15 @@
 </main>
 <div class="row">
   <div class="column  left">
-    <div style="display: flex; margin: 31px;">
+    <app-aside></app-aside>
+  </div>
+  <div class="column right">
+  <!--  <div style="display: flex; margin: 31px;">
       <button mat-raised-button color="primary" (click)="fnNewPost()">
         <mat-icon>add</mat-icon>Agregar publicacion
       </button>
     </div>
-
+  -->
     <mat-accordion multi #activities="matAccordion">
       <!-- Activity -->
       <mat-expansion-panel class="panel" *ngFor="let post of text">
@@ -132,9 +135,7 @@
         </div>
       </mat-expansion-panel>
     </mat-accordion>
-  </div>
-  <div class="column right">
-    <app-aside></app-aside>
+    
   </div>
 </div>
 

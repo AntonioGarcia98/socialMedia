@@ -75,7 +75,7 @@ function getPosts(req, res) {
     }
 
     Post.find((err, posts) => {
-        if (err) return res.status(200).send({ message: 'Error en la peticion', success: false });
+        if (err) return res.status(200).send({ message: 'Error en la peticion', success: false,Pendejo:true });
 
         if (!posts) return res.status(200).send({ message: 'No hay posts disponibles', success: false });
 
