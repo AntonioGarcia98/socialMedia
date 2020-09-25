@@ -15,8 +15,16 @@ export class DeliveryService {
 
   }
 
-  getAll() {
-    return this.http.get(this.url + "/getPosts")
+  getAll(id?:string) {
+    console.log(id)
+    if(id){
+      debugger;
+      return this.http.get(this.url + "/getPosts"+"/"+id)
+    }else{
+  
+      return this.http.get(this.url + "/getPosts")
+    }
+  
   }
 
   create(item) {

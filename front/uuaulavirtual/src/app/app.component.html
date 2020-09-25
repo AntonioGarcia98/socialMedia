@@ -34,7 +34,7 @@
           <ng-container *ngIf="( session | async )">
             <button mat-button (click)="logout()"> Cerrar sesión </button>
             <button mat-button (click)="edit()"> Editar perfil </button>
-            <button mat-button [routerLink]="['/profile-page']"> Ir a tu perfil  </button>
+            <button mat-button (click)="fnVisitarPerfil(user)"> Ir a tu perfil  </button>
           </ng-container>
           
         </div>

@@ -11,7 +11,7 @@ const routes: Routes = [
     /* data: {} */
   },
   {
-    path: 'profile-page',
+    path: 'profile-page/:id',
     loadChildren: () => import('./components/profile-page/profile-page.module').then(m => m.ProfilePageModule),
   },
     /* canActivate: [AuthGuard], */

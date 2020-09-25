@@ -103,6 +103,11 @@ export class AppComponent implements OnInit {
       })
   }
 
+  fnVisitarPerfil(any):void{
+    console.log(any.id)
+    this.router.navigate(["/profile-page",any.id])
+  }
+
 
 
   async createAccount() {
