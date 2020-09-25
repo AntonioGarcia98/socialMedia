@@ -72,8 +72,8 @@ function getPosts(req, res) {
             return res.status(200).send({
                 posts
             });
-        }).sort('_id').populate();
-    }
+        }).sort().populate();
+    }else{
 
     Post.find((err, posts) => {
         if (err) return res.status(200).send({ message: 'Error en la peticion sp', success: false });
@@ -81,10 +81,11 @@ function getPosts(req, res) {
         if (!posts) return res.status(200).send({ message: 'No hay posts disponibles', success: false });
 
         return res.status(200).send({
+           
             posts
         });
     }).sort('_id').populate({ path: 'Usuario' });
-
+    }
 }
 
 //update post
