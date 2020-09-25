@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DeliveryService } from 'src/app/services/delivery.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { SessionService } from 'src/app/services/session.service';
+import { UserService } from 'src/app/services/user.service';
+import { UserModel } from '../create-account/user.model';
 
 @Component({
   selector: 'app-profile-page',
@@ -12,28 +14,47 @@ import { SessionService } from 'src/app/services/session.service';
 export class ProfilePageComponent implements OnInit {
 
   constructor(
-    private deliveryService_api:DeliveryService,
-    private sessionService_api:SessionService,
-    private loader : LoaderService,
-    private router:ActivatedRoute
+    private deliveryService_api: DeliveryService,
+    private userService_api: UserService,
+    private loader: LoaderService,
+    private router: ActivatedRoute
   ) { }
-  num_idUser:string
+  num_idUser: string
+  text: any
+  user: UserModel
   ngOnInit(): void {
     this.loader.hide()
     this.num_idUser = this.router.snapshot.params['id'];
-    console.log(this.num_idUser,"loin")
-        this.fnGetPostByUSer();
+    this.fnGetUser()
+    this.getPost();
   }
 
 
-  fnGetPostByUSer():void{
-    this.deliveryService_api.getAll(this.num_idUser).toPromise()
-    .then((res )=>{
-      console.log(res)
-    })
-    .catch((rej)=>{
-      console.log(rej)
-    })
+
+
+
+
+  async getPost() {
+    this.text
+    try {
+      var res: any = await this.deliveryService_api.getAll(this.num_idUser).toPromise()
+      this.text = res.posts
+    } catch (err) {
+      console.error(err);
+    } finally {
+      this.loader.hide()
+    }
   }
+
+
+  fnGetUser(): void {
+    this.userService_api.getUserById(this.num_idUser).toPromise()
+      .then((res: any) => {
+        this.user = res.user
+
+      })
+      .catch((rej) => { })
+  }
+
 
 }

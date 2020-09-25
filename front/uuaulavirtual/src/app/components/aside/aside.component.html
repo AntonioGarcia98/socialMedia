@@ -4,39 +4,42 @@
 
     <div class="card mb-4 text-center wow fadeIn">
 
-      <!-- Content -->
+   
       <div class="card-body  text-center" style="background-color: white;">
-        <h2>Mis datos</h2>
+        <ng-container *ngIf="user">
+
+
+          <h2>Acerca del usuario</h2>
        
         
-        <br>
-        <p class="mb-4 mt-2">
-          <strong>Numero de publicaciones</strong>
-        </p>
-        <div class="photo-left">
-          <img class="photo" src="https://images.pexels.com/photos/1804796/pexels-photo-1804796.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
-          <div class="active"></div>
-        </div>
-        <h4 class="name"> {{user?.nombre}} {{user?.apellidos}}</h4>
-        <p class="info">Estudiante</p>
-        <p class="info">{{user?.nombre}}</p>
-        
-        
-          <div class="stat mt-2" >
-            <p class="number-stat">38</p>
-            <p class="desc-stat">Publicaciones</p>
+          <br>
+          
+          <div class="photo-left">
+            <img class="photo" src="https://images.pexels.com/photos/1804796/pexels-photo-1804796.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+            <div class="active"></div>
           </div>
-     
-        <p class="desc">{{user?.descripcion}}</p>
-      <!--  <div class="social">
-          <i class="fa fa-facebook-square" aria-hidden="true"></i>
-          <i class="fa fa-twitter-square" aria-hidden="true"></i>
-          <i class="fa fa-pinterest-square" aria-hidden="true"></i>
-          <i class="fa fa-tumblr-square" aria-hidden="true"></i>
-        </div>
+          <h4 class="name"> {{user?.nombre}} {{user?.apellidos}}</h4>
+          <p class="info">Estudiante</p>
+          <p class="info">{{user?.nombre}}</p>
+          
+          
+            <div class="stat mt-2" >
+              <p class="number-stat">38</p>
+              <p class="desc-stat">Publicaciones</p>
+            </div>
+       
+          <p class="desc">{{user?.descripcion}}</p>
+        <!--  <div class="social">
+            <i class="fa fa-facebook-square" aria-hidden="true"></i>
+            <i class="fa fa-twitter-square" aria-hidden="true"></i>
+            <i class="fa fa-pinterest-square" aria-hidden="true"></i>
+            <i class="fa fa-tumblr-square" aria-hidden="true"></i>
+          </div>
+      
+        -->
+  
+        </ng-container>
     
-      -->
-
 
 
         <a target="_blank" href="https://www.uaa.mx/portal/alumnos/tutorias/">Conoce mas de tutorias pares 
@@ -94,14 +97,14 @@
       </div>
 
     </div>
-    <!--/.Card : Dynamic content wrapper-->
+  
 
-    <!--Card-->
+
     <div class="card mb-4 wow fadeIn">
 
       <div class="card-header">Asesoras del programa intitucional de Tutoria (PIT)</div>
 
-      <!--Card content-->
+  
       <div class="card-body">
 
         <ul class="list-unstyled">
@@ -130,6 +133,6 @@
       </div>
 
     </div>
-    <!--/.Card-->
+ 
 
   </div>

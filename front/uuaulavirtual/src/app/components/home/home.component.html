@@ -1,10 +1,8 @@
-<!--<app-navbar></app-navbar>-->
 
-<!--Main layout-->
 <main class="mt-2 pt-5">
   <div class="container">
 
-    <!--Section: Post-->
+   
     <section class="mt-4">
 
       <!--Grid row-->
@@ -19,13 +17,10 @@
             <img src="../../../assets/study.jpg" alt="">
 
           </div>
-          <!--/.Featured Image-->
-
-          <!--Card-->
 
           <div class="card  wow fadeIn">
 
-            <!--Card content-->
+      
             <div class="card-body text-center">
 
               <p class="h5 my-4">Que es SocialMedia?</p>
@@ -60,30 +55,19 @@
                   <button mat-raised-button color="primary" (click)="activities.closeAll()">Ocultar el contenido del
                     post</button>
                 </div>
-
               </div>
-
-
               <hr>
-
-
             </div>
-
           </div>
         </div>
       </div>
-
-
-
-
-
-
     </section>
   </div>
 </main>
 <div class="row">
   <div class="column  left">
-    <app-aside></app-aside>
+    <app-aside [user]="this.sessionData?.user"></app-aside>
+   
   </div>
   <div class="column right">
   <!--  <div style="display: flex; margin: 31px;">
@@ -104,7 +88,7 @@
 
           </mat-panel-title>
           <mat-panel-description style="justify-content: flex-end; align-items: center;">
-            {{post.usuario}}
+           <a href="javascript:void(0);"  (click) ="fnVisitUser(post.usuario)">    {{post.usuario}}</a>
 
           </mat-panel-description>
 
@@ -121,70 +105,25 @@
           <div class="description">
             <button mat-raised-button color="accent"></button>
           </div>
-          <div class="buttons">
-            <button mat-mini-fab color="primary" (click)="deletePost(post)">
-              <mat-icon style="display: flex;flex-direction: row-reverse;">delete</mat-icon>
-            </button>
-            <button mat-mini-fab color="primary" (click)="editPost(post)">
-              <mat-icon style="display: flex;flex-direction: row-reverse;">edit</mat-icon>
-            </button>
+          <ng-container  *ngIf="( session | async )">
 
-
-
-          </div>
+            <div class="buttons"  >
+              <button mat-mini-fab color="primary" (click)="deletePost(post)" >
+                <mat-icon style="display: flex;flex-direction: row-reverse;">delete</mat-icon>
+              </button>
+              <button mat-mini-fab color="primary" (click)="editPost(post)">
+                <mat-icon style="display: flex;flex-direction: row-reverse;">edit</mat-icon>
+              </button>
+  
+            </div>
+          </ng-container>
+         
         </div>
       </mat-expansion-panel>
     </mat-accordion>
     
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--Commentarios
-            <div class="card card-comments mb-3 wow fadeIn">
-              <div class="card-header font-weight-bold"></div>
-              <div class="card-body">
-
-                <div class="media d-block d-md-flex mt-4" *ngFor="let post of group.comments">
-                  <div class="media-body text-center text-md-left ml-md-3 ml-0">
-                    <h5 class="mt-0 font-weight-bold">{{post.person}}
-                      <a href="" class="pull-right">
-                        <i class="fas fa-reply"></i>
-                      </a>
-                    </h5>
-                    {{post.comment}}
-                  </div>
-                </div>
-
-                <div class="form-group mt-4">
-                  <label for="quickReplyFormComment">Comentario</label>
-                  <textarea class="form-control" id="quickReplyFormComment" rows="5" #titleInput></textarea>
-
-                  <div class="text-center">
-                    <button class="btn btn-info btn-sm" (click)="addComment(titleInput.value)">Post</button>
-                  </div>
-                </div>
-
-              </div>
-            </div>-->
-
-
-
 
 
 

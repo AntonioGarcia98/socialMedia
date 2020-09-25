@@ -1,10 +1,51 @@
 <div class="row">
   <div class="column  left">
 
-    <app-aside></app-aside>
+    <app-aside [user]="user"></app-aside>
   </div>
   <div class="column right">
-    dsdaddsasdadsasad
+    <mat-accordion multi #activities="matAccordion">
+      <!-- Activity -->
+      <mat-expansion-panel class="panel" *ngFor="let post of text">
+        <mat-expansion-panel-header class="activity-panel">
 
+          <mat-panel-title>
+            <h2 style="margin: 0;">
+              {{post.titulo}}
+            </h2>
+
+          </mat-panel-title>
+          <mat-panel-description style="justify-content: flex-end; align-items: center;">
+            {{post.usuario}}
+
+          </mat-panel-description>
+
+        </mat-expansion-panel-header>
+
+        <div class="activity-container">
+
+          <div class="description">
+            {{post.descripcion}}
+          </div>
+          <div class="description">
+            {{post.texto}}
+          </div>
+          <div class="description">
+            <button mat-raised-button color="accent"></button>
+          </div>
+          <div class="buttons">
+            <button mat-mini-fab color="primary" (click)="deletePost(post)">
+              <mat-icon style="display: flex;flex-direction: row-reverse;">delete</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary" (click)="editPost(post)">
+              <mat-icon style="display: flex;flex-direction: row-reverse;">edit</mat-icon>
+            </button>
+
+
+
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>

@@ -18,7 +18,6 @@ export class DeliveryService {
   getAll(id?:string) {
     console.log(id)
     if(id){
-      debugger;
       return this.http.get(this.url + "/getPosts"+"/"+id)
     }else{
   
@@ -36,13 +35,11 @@ export class DeliveryService {
   }
 
   get(id: any) {
-    console.log("llddsa")
     return this.http.get(this.url + '/getPost/idPost/' + id);
   }
 
 
   getPostByUser() {
-    console.log("llddsa")
     return this.http.get(this.url + '/getPostsByUser');
   }
 

@@ -17,6 +17,8 @@ import { SessionService } from 'src/app/services/session.service';
 import { UserService } from 'src/app/services/user.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { PostModel } from './post.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,16 +29,21 @@ import { PostModel } from './post.model';
 export class HomeComponent implements OnInit {
 
 
-
-  text:any 
-  //sessionData: Session
+  session: Observable<any>
+  text: any
+  sessionData: any
+  postAux: any
   constructor(
     private dialog: MatDialog,
     private deliveryService: DeliveryService,
     private sessionService: SessionService,
     private userService: UserService,
+    private router:Router,
     private loader: LoaderService,
-  ) { }
+  ) { 
+    this.session = this.sessionService._session;
+  
+  }
 
   ngOnInit(): void {
     this.loader.show()
@@ -44,25 +51,27 @@ export class HomeComponent implements OnInit {
     this.subscribeSession()
   }
   subscribeSession(): void {
-    /*this.sessionService._session.subscribe(data => {
-      this.sessionData = data
-      console.log(this.sessionData)
-    })*/
+    this.sessionService._session.subscribe(data => {
+      if(data){
+        this.sessionData = data
+      }else {
+        this.sessionData = {}
+      }
+     
+      
+    })
   }
-  postAux:any
+ 
 
-  
 
   async getPost() {
     this.text
-    try{
-      var res:any = await this.deliveryService.getAll().toPromise()
-      console.log(res)
+    try {
+      var res: any = await this.deliveryService.getAll().toPromise()
       this.text = res.posts
-  
-    } catch(err){
+    } catch (err) {
       console.error(err);
-    }finally{
+    } finally {
       this.loader.hide()
     }
 
@@ -71,14 +80,6 @@ export class HomeComponent implements OnInit {
 
 
 
-  addComment(title: string): void {
-    this.text[0].comments.push({
-
-      person: "Antonio Garcia",
-      comment: title
-
-    })
-  }
 
   fnNewPost(): void {
 
@@ -152,7 +153,7 @@ export class HomeComponent implements OnInit {
 
             ],
           } as S2FormGroupModel,
-          
+
         ],
 
         _saveButton: {
@@ -165,13 +166,13 @@ export class HomeComponent implements OnInit {
 
     config.fnOnSubmit = (event, ref: MatDialogRef<any>) => {
 
-     var postNew: PostModel = new PostModel()
+      var postNew: PostModel = new PostModel()
 
       Object.keys(event.data['post-new']).map(k => {
         postNew[k] = event.data['post-new'][k]
       })
-     
-      console.log(postNew)
+
+    
 
       this.deliveryService.create(postNew).toPromise()
         .then((res) => {
@@ -209,9 +210,9 @@ export class HomeComponent implements OnInit {
   }
 
 
-  editPost(element:any): void {
+  editPost(element: any): void {
     console.log(element)
- 
+
 
 
     var inputColumns: S2BootstrapColumnsModel = { _lg: 12, _xl: 12, _md: 12, _xs: 12, _sm: 12 } as S2BootstrapColumnsModel;
@@ -226,7 +227,7 @@ export class HomeComponent implements OnInit {
       titulo: element.titulo,
       texto: element.texto,
       descripcion: element.descripcion,
-      usuario:element.usuario
+      usuario: element.usuario
     })
 
     var config: SithecConfig = new SithecConfig()
@@ -289,7 +290,7 @@ export class HomeComponent implements OnInit {
 
             ],
           } as S2FormGroupModel,
-          
+
         ],
 
         _saveButton: {
@@ -302,15 +303,15 @@ export class HomeComponent implements OnInit {
 
     config.fnOnSubmit = (event, ref: MatDialogRef<any>) => {
       console.log(event.data['post-new'])
-     var postNew: PostModel = new PostModel()
+      var postNew: PostModel = new PostModel()
 
       Object.keys(event.data['post-new']).map(k => {
         postNew[k] = event.data['post-new'][k]
       })
-     
+
       console.log(postNew)
 
-      this.deliveryService.update(element._id,postNew).toPromise()
+      this.deliveryService.update(element._id, postNew).toPromise()
         .then((res) => {
           ref.close(1)
         })
@@ -346,23 +347,27 @@ export class HomeComponent implements OnInit {
   }
 
 
-  deletePost(element:any):void{
+  deletePost(element: any): void {
     this.deliveryService.delete(element._id).toPromise()
-    .then((res) => {
-      if (res) {
-       
-        var message: MessageConfig = {
-          title: "Eliminar post ",
-          message: "El post se ha sido eliminado correctamente"
-        }
-        this.dialog.open(MessageDialogComponent, { data: message, panelClass: "dialog-fuchi" });
-        this.getPost()
-      }
+      .then((res) => {
+        if (res) {
 
-    })
-    .catch((rej) =>{
-      console.log(rej)
-    })
+          var message: MessageConfig = {
+            title: "Eliminar post ",
+            message: "El post se ha sido eliminado correctamente"
+          }
+          this.dialog.open(MessageDialogComponent, { data: message, panelClass: "dialog-fuchi" });
+          this.getPost()
+        }
+
+      })
+      .catch((rej) => {
+        console.log(rej)
+      })
+  }
+
+  fnVisitUser(id:string):void{
+     this.router.navigate(["/profile-page",id])
   }
 
 }

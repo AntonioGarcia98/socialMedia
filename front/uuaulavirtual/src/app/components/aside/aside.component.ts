@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
@@ -15,29 +16,37 @@ import { MessageConfig } from '../message-dialog/message-dialog.model';
   styleUrls: ['./aside.component.css']
 })
 export class AsideComponent implements OnInit {
-
-  user: UserModel
+  @Input() user: UserModel
+  //user: UserModel
   createPublication: FormGroup
-  session: Observable<any>
+  sessionActive: boolean= false
   constructor(
     private dialog: MatDialog,
     private sessionService: SessionService,
-    private loader : LoaderService,
-    private deliveryService:DeliveryService
+    private loader: LoaderService,
+    private deliveryService: DeliveryService
   ) {
-
-    this.session = this.sessionService._session;
+   
   }
 
 
   ngOnInit() {
-
-    this.getUserInfo()
+    this.subscribeSession()
     this.fnCreateForm();
   }
-  ngOnChanges() {
-    this.getUserInfo()
+
+   subscribeSession(): void {
+    this.sessionService._session.subscribe(data => {
+      if(data){
+        this.sessionActive = true
+      }else {
+        this.sessionActive = false
+      }
+     
+      
+    })
   }
+
 
 
   fnCreateForm(): void {
@@ -45,7 +54,6 @@ export class AsideComponent implements OnInit {
       titulo: new FormControl(null, Validators.required),
       texto: new FormControl(null, Validators.required),
       descripcion: new FormControl(null),
-      // usuario: new FormControl(null),
     });
   }
 
@@ -54,23 +62,32 @@ export class AsideComponent implements OnInit {
     if (!this.createPublication.valid) {
       return;
     }
-    let publicationSend = this.createPublication.value
-    publicationSend.usuario = this.user.id
-    console.log(publicationSend)
 
+    let publicationSend = this.createPublication.value
+    debugger;
+    if (!this.user || this.sessionActive==false) {
+      console.log(this.user, "usuario")
+      this.fnOpenMessage("Crea tu cuenta para realizar una publicacion")
+      return
+    }
+    publicationSend.usuario = this.user._id
     this.loader.show()
-  
+    console.log(publicationSend)
     this.deliveryService.create(publicationSend).toPromise()
-    .then((res:any) => {
-      this.fnOpenMessage(res.message)
+      .then((res: any) => {
+        this.fnOpenMessage(res.message)
         this.loader.hide()
-    })
-    .catch((err) => {
-      this.loader.hide()
-     
-      this.fnOpenMessage(err)
-  
-    })
+      })
+      .catch((err) => {
+        this.loader.hide()
+
+        this.fnOpenMessage(err)
+
+      })
+      .finally(()=>{
+        this.createPublication.reset()
+        this.createPublication.markAsUntouched()
+      })
 
 
   }
@@ -79,17 +96,11 @@ export class AsideComponent implements OnInit {
 
   fnOpenMessage(text: string) {
     var message: MessageConfig = {
-      title: " Iniciar sesión",
+      title: this.sessionActive==true?" Post publicado":"Crea tu cuenta",
       message: text
     }
     this.dialog.open(MessageDialogComponent, { data: message, panelClass: "dialog-fuchi" });
   }
 
-
-  getUserInfo() {
-    this.user = this.sessionService.getSession()?.user
-    console.log(this.user)
-
-  }
 
 }

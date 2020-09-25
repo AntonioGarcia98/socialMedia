@@ -883,7 +883,7 @@ export class AppComponent implements OnInit {
   login2():void{
    
     this.openDialog(LoginComponent, null).then((res) => {
-
+      this.getUserInfo()
     })
     
   }

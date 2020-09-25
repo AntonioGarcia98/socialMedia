@@ -21,26 +21,13 @@ export class UserService extends ServiceBase<User> {
         return this.http.post(this.url + "/newUsuario",newUser)
     }
 
-
-    
-    getStudents()
+    getUserById(id:string)
     {
-        return this.http.get(this.url + "/filter/student")
+        return this.http.get(this.url + "/getUsuario/idUsuario/"+id)
     }
 
-    getTeachers() : Observable<any>
-    {
-        return this.http.get(this.url + "/filter/teacher")
-    }
+  
 
-    getStudentsByIdSchool(id:any)
-    {
-        return this.http.get(environment.server + 'students/school/'+id)
-    }
 
-    getTeachersByIdSchool(id:any) : Observable<any>
-    {
-        return this.http.get(environment.server + 'teachers/school/'+id)
-    }
     
 }

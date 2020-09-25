@@ -102,7 +102,7 @@ export class SessionService {
             descripcion:  decoded.description,
             nombre: decoded.nombre,
             tipoUsuario: decoded.tipoUsuario,
-            id: decoded.sub
+            _id: decoded.sub
         }
         session.user = JSON.parse(JSON.stringify(decoded.user));
 
