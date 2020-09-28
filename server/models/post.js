@@ -11,4 +11,4 @@ var PostSchema = Schema({
     //objUsuario: 
 });
 
-module.exports = mongoose.model('PostSchema', PostSchema, 'post');
+module.exports = mongoose.model('Post', PostSchema, 'post');
