@@ -21,7 +21,7 @@ var md_auth = require('../middleware/authenticated');
 function newUsuario(req, res) {
     var params = req.body; //Toma todos los campos que llegan por req en body, y los pone en params
     var user = new User();
-    if (params.nombre && params.apellidos && params.correo && params.pass  && params.descripcion) {
+    if (params.nombre && params.apellidos && params.correo && params.pass && params.descripcion) {
         //Seguir con el video jeje
 
         user.nombre = params.nombre;
@@ -56,7 +56,7 @@ function newUsuario(req, res) {
                                 return res.status(200).send({ message: 'Error al insertar el usuario ' + err, success: false })
                             }
                             if (userStored) {
-                                res.status(200).send({ message: "Se creo el usuario correctamente", success: true,user: userStored,pass:params.pass});
+                                res.status(200).send({ message: "Se creo el usuario correctamente", success: true, user: userStored, pass: params.pass });
                             } else {
                                 res.status(200).send({ message: 'No se ha registrado el usuario', success: false });
                             }
@@ -90,7 +90,7 @@ function getUser(req, res) {
 
 //Consultar usuarios por paginas
 function getUsers(req, res) {
-    var identity_user_id = req.user.sub;
+    // var identity_user_id = req.user.sub;
 
     var page = 1;
 

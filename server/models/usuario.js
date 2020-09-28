@@ -13,4 +13,4 @@ var UsuarioSchema = Schema({
     descripcion: String
 });
 
-module.exports = mongoose.model('UsuarioSchema', UsuarioSchema, 'usuario');
+module.exports = mongoose.model('Usuario', UsuarioSchema, 'usuario');
