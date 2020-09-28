@@ -11,8 +11,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ],
     exports: [FormErrorsComponent],
     declarations: [FormErrorsComponent],
-    providers: [
-
-    ],
+    providers: [],
 })
 export class FormErrorsModule { }

@@ -56,13 +56,8 @@ export class ProfilePageComponent implements OnInit {
       .catch((rej) => { })
   }
 
-  deletePost(post):void{
-
-  }
-
-  editPost(post):void{
-    
-  }
+  deletePost(me){}
+  editPost(me){}
 
 
 }

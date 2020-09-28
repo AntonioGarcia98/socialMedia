@@ -1,12 +1,9 @@
-import { state } from '@angular/animations';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
-import { config } from 'process';
 
 import { UserService } from 'src/app/services/user.service';
 import { MustMatch } from 'src/app/validators/match.validator';
-import { FormDialogComponent } from '../form-dialog/form-dialog.component';
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 import { MessageConfig } from '../message-dialog/message-dialog.model';
 

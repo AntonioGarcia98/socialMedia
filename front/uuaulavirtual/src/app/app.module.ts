@@ -12,28 +12,22 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { FormDialogComponent } from './components/form-dialog/form-dialog.component';
-import { SithecSuiteModule } from './form-component/sithec-tools-suite.module';
 import { SessionService } from './services/session.service';
 import { AuthGuard } from './services/auth.guard';
 import { HttpInterceptorService } from './services/http.interceptor';
 import { UserService } from './services/user.service';
 import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
-import { TeacherService } from './services/teacher.service';
-import { StudentService } from './services/student.service';
-import { SchoolService } from './services/school.service';
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderService } from './services/loader.service';
-
-import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {  MatFormFieldModule} from '@angular/material/form-field';
 import {  MatInputModule} from '@angular/material/input';
 import { LoginModule } from './components/login/login.module';
-import { CreateAccountModule } from './components/create-account/create-account.module';
 import { CommonModule } from '@angular/common';
+import { FormErrorsModule } from './components/form-errors/form-errors.module';
+import { CreateAccountModule } from './components/create-account/create-account.module';
 
 
 
@@ -43,12 +37,8 @@ import { CommonModule } from '@angular/common';
   declarations: [
     AppComponent,/* Se declararán solo modulos compartidos de forma global*/
     NavbarComponent,
-    FormDialogComponent,
     MessageDialogComponent,
     LoaderComponent
-   
-
-   
   ],
   imports: [
     BrowserModule,
@@ -62,21 +52,18 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatDividerModule,
     MatDialogModule,
-    SithecSuiteModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     LoginModule,
+    CreateAccountModule,
     CommonModule,
 
   ],
   providers: [
     UserService,
-    TeacherService,
-    StudentService,
     SessionService,
-    SchoolService,
     LoaderService,
     AuthGuard,
     {
