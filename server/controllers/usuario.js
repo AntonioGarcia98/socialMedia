@@ -113,7 +113,7 @@ function deleteUser(req, res) {
     User.deleteOne({ _id: usuario }, err => {
         if (err) return res.status(200).send({ message: 'Error al eliminar el usuario', success: false });
 
-        return res.status(200).send({ message: 'Usuario Eliminada', success: true });
+        return res.send({ message: 'Usuario Eliminada', success: true });
     });
 }
 
